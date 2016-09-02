@@ -3,23 +3,27 @@ const serveStatic = require('serve-static');
 
 // create server
 const connection = connect();
-const serve = serveStatic(__dirname + '/web');
+const serving = serveStatic(__dirname + '/web');
 
-// serve files
-connection.use(function useServe(request, respond, next) {
+connection.use(function serveLog(request, respond, next) {
   console.log('Serve: ' + request.url);
+  next();
+});
 
-  // serve dynamic paths
-  // if (request.url.startsWith('/test')) {
-  //   respond.setHeader('Content-Type', 'text/plain');
-  //   respond.end('Hello Connect');
-  //   return;
-  // }
+// connection.use('/test', function dynamicServe(request, respond, next) {
+//   console.log('|- Dynamic: ' + request.url);
+
+//   respond.setHeader('Content-Type', 'text/plain');
+//   respond.end('Dynamic root: ' + request.url);
+// });
+
+connection.use(function serve(request, respond, next) {
+  console.log('|- Static: ' + request.url);
 
   try {
-    serve(request, respond, next);
+    serving(request, respond, next);
   } catch (e) {
-    console.error(e);
+    console.error('|- Error: ' + e);
   }
 });
 
