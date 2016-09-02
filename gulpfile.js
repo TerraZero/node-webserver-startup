@@ -27,6 +27,8 @@ gulp.task('pug', function() {
     .pipe(gulp.dest(paths.pug.dest));
 });
 
+gulp.task('build', ['sass', 'pug']);
+
 gulp.task('watch', ['sass', 'pug'], function() {
   gulp.watch(paths.sass.watch, ['sass']);
   gulp.watch(paths.pug.watch, ['pug']);
