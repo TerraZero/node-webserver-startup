@@ -1,0 +1,19 @@
+{
+  "name": "node-webserver-startup",
+  "version": "1.0.0",
+  "description": "A startup for webservers with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerraZero/node-webserver-startup.git"
+  },
+  "author": "TerraZero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TerraZero/node-webserver-startup/issues"
+  },
+  "homepage": "https://github.com/TerraZero/node-webserver-startup#readme"
+}
