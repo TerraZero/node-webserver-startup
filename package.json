@@ -4,7 +4,8 @@
   "description": "A startup for webservers with node",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/TerraZero/node-webserver-startup/issues"
   },
-  "homepage": "https://github.com/TerraZero/node-webserver-startup#readme"
+  "homepage": "https://github.com/TerraZero/node-webserver-startup#readme",
+  "dependencies": {
+    "connect": "^3.4.1",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.0.4",
+    "gulp-sass": "^2.3.2",
+    "serve-static": "^1.11.1"
+  }
 }
