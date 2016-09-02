@@ -6,13 +6,27 @@ const connection = connect();
 const serve = serveStatic(__dirname + '/web');
 
 // serve files
-connection.use(function serveLog(request, respond) {
+connection.use(function useServe(request, respond, next) {
   console.log('Serve: ' + request.url);
-  return serve(request, respond);
+
+  // serve dynamic paths
+  // if (request.url.startsWith('/test')) {
+  //   respond.setHeader('Content-Type', 'text/plain');
+  //   respond.end('Hello Connect');
+  //   return;
+  // }
+
+  try {
+    serve(request, respond, next);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 // start server
 connection.listen(8080, function() {
-  console.log('Server is available on localhost:8080!');
+  console.log();
+  console.log('Server is available on: ');
+  console.log('localhost:8080');
   console.log();
 });
