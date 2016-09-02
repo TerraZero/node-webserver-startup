@@ -1,0 +1,65 @@
+(function($) {
+
+  class DragItem {
+
+    constructor(selector) {
+      this.selector = selector;
+      this._elements = null;
+      this._drag = null;
+      this._offset = {
+        x: 0,
+        y: 0,
+      };
+    }
+
+    elements() {
+      if (!this._elements) this._elements = $(this.selector);
+      return this._elements;
+    }
+
+    execute() {
+      this.elements()
+        .on('mousedown', this.mousedown(this));
+      $(window)
+        .on('mousemove', this.mousemove(this))
+        .on('mouseup', this.mouseup(this));
+      return this;
+    }
+
+    mousedown(that) {
+      return function(e) {
+        that._drag = $(this);
+        that._offset.x = e.clientX - that._drag.offset().left;
+        that._offset.y = e.clientY - that._drag.offset().top;
+      };
+    }
+
+    mouseup(that) {
+      return function(e) {
+        that._drag = null;
+      };
+    }
+
+    mousemove(that) {
+      return function(e) {
+        if (that._drag) {
+          var offset = that._offset;
+
+          that._drag.css({
+            position: 'fixed',
+            top: e.clientY - offset.y,
+            left: e.clientX - offset.x,
+            margin: 0,
+          });
+        }
+      };
+    }
+
+  }
+
+  $(function documentReady() {
+    var drag = new DragItem('.item');
+    drag.execute();
+  });
+
+})(jQuery);

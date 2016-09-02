@@ -6,6 +6,16 @@ const babel = require('gulp-babel');
 
 const concat = require('gulp-concat');
 
+const errorHandler = function(name) {
+  return function(err) {
+    console.error('########### ERROR ' + name.toUpperCase() + ' ############');
+    // err.showStack = true;
+    err.showProperties = true;
+    console.error(err.toString());
+    console.error('########### ERROR ' + name.toUpperCase() + ' ############');
+    this.emit('end')
+  };
+};
 
 const paths = {
   sass: {
@@ -28,6 +38,7 @@ const paths = {
 gulp.task('sass', function() {
   return gulp.src(paths.sass.files)
     .pipe(sass())
+    .on('error', errorHandler('sass'))
     .pipe(gulp.dest(paths.sass.dest));
 });
 
@@ -36,6 +47,7 @@ gulp.task('pug', function() {
     .pipe(pug({
       basedir: __dirname + '/pug',
     }))
+    .on('error', errorHandler('pug'))
     .pipe(gulp.dest(paths.pug.dest));
 });
 
@@ -44,7 +56,7 @@ gulp.task('babel', function() {
     .pipe(babel({
       presets: ['es2015'],
     }))
-    .pipe(concat('all.js'))
+    .on('error', errorHandler('babel'))
     .pipe(gulp.dest(paths.babel.dest));
 });
 
