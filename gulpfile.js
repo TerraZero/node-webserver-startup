@@ -33,7 +33,9 @@ gulp.task('sass', function() {
 
 gulp.task('pug', function() {
   return gulp.src(paths.pug.files)
-    .pipe(pug())
+    .pipe(pug({
+      basedir: __dirname + '/pug',
+    }))
     .pipe(gulp.dest(paths.pug.dest));
 });
 

@@ -1,0 +1,14 @@
+extends /base/_page.pug
+
+block page-title
+  | Page 1
+
+block append page-css
+  link(href='/src/css/page/page.css', rel='stylesheet')
+
+block page
+  .wrapper
+    - var i = 0;
+    while i < 5
+      .item
+        | #{i++}

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      block page-title
+        | Page title
+    block page-css
+      link(href='/src/css/index.css', rel='stylesheet')
+    block page-js
+      script(src='/src/js/all.js')
+  body
+    block body
+      #page
+        block page

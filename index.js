@@ -5,8 +5,8 @@ const serveStatic = require('serve-static');
 const connection = connect();
 const serving = serveStatic(__dirname + '/web', {fallthrough: false});
 
-function redirect(response, location) {
-  console.log('|- Redirect: ' + location);
+function redirect(response, location, logging = '|- Redirect') {
+  console.log(logging + ': ' + location);
   response.writeHead(302, {
     'Location': location,
   });
@@ -30,12 +30,26 @@ connection.use(function serve(request, response, next) {
   serving(request, response, next);
 });
 
+connection.use(function redirectHtmlFile(err, request, response, next) {
+  console.log('|--- Static: Url is not static!');
+
+  if (err.statusCode == 404 && !request.url.endsWith('.html')) {
+    redirect(response, request.url + '.html', '|- Html Redirect');
+  } else {
+    next(err);
+  }
+});
+
 connection.use(function notFoundHandler(err, request, response, next) {
   if (err.statusCode == 404) {
     redirect(response, '/error/404.html');
   } else {
-    console.error('|- Error (' + err.statusCode + '): ' + err);
+    next(err);
   }
+});
+
+connection.use(function errorHandler(err, request, response, next) {
+  console.error('|- Error (' + err.statusCode + '): ' + err);
 });
 
 // start server
