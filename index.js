@@ -3,27 +3,38 @@ const serveStatic = require('serve-static');
 
 // create server
 const connection = connect();
-const serving = serveStatic(__dirname + '/web');
+const serving = serveStatic(__dirname + '/web', {fallthrough: false});
 
-connection.use(function serveLog(request, respond, next) {
+function redirect(response, location) {
+  console.log('|- Redirect: ' + location);
+  response.writeHead(302, {
+    'Location': location,
+  });
+  response.end();
+}
+
+connection.use(function serveLog(request, response, next) {
   console.log('Serve: ' + request.url);
   next();
 });
 
-// connection.use('/test', function dynamicServe(request, respond, next) {
+// connection.use('/test', function dynamicServe(request, response, next) {
 //   console.log('|- Dynamic: ' + request.url);
 
-//   respond.setHeader('Content-Type', 'text/plain');
-//   respond.end('Dynamic root: ' + request.url);
+//   response.setHeader('Content-Type', 'text/plain');
+//   response.end('Dynamic root: ' + request.url);
 // });
 
-connection.use(function serve(request, respond, next) {
+connection.use(function serve(request, response, next) {
   console.log('|- Static: ' + request.url);
+  serving(request, response, next);
+});
 
-  try {
-    serving(request, respond, next);
-  } catch (e) {
-    console.error('|- Error: ' + e);
+connection.use(function notFoundHandler(err, request, response, next) {
+  if (err.statusCode == 404) {
+    redirect(response, '/error/404.html');
+  } else {
+    console.error('|- Error (' + err.statusCode + '): ' + err);
   }
 });
 
