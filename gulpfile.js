@@ -5,12 +5,12 @@ const pug = require('gulp-pug');
 const paths = {
   sass: {
     watch: 'sass/**/*.sass',
-    files: 'sass/**/*.sass',
+    files: ['sass/**/*.sass', '!sass/**/_*.sass'],
     dest: 'web/src/css',
   },
   pug : {
     watch: 'pug/**/*.pug',
-    files: 'pug/**/*.pug',
+    files: ['pug/**/*.pug', '!pug/**/_*.pug'],
     dest: 'web',
   },
 };
