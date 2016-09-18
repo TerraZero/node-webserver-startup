@@ -1,0 +1,9 @@
+(function($) {
+
+  $(function() {
+    setTimeout(function() {
+      $('body').addClass('ani');
+    }, 500);
+  });
+
+})(jQuery);

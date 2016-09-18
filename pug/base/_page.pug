@@ -2,13 +2,20 @@ doctype html
 html
   head
     title
-      block page-title
+      block title
         | Page title
-    block page-css
-      link(href='/src/css/index.css', rel='stylesheet')
-    block page-js
-      script(src='/src/js/jquery-3.1.0.min.js')
+    block css-wrapper
+      block css-lib
+      block css
+        link(href='/src/css/norm.css', rel='stylesheet')
+    block js-wrapper
+      block js-lib
+        script(src='/src/lib/js/jquery.js')
+      block js
+
   body
     block body
-      #page
-        block page
+      #screen
+        block screen
+          #page
+            block page

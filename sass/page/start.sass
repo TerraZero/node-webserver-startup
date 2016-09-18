@@ -1,0 +1,42 @@
+body
+  width: calc(100vw)
+  height: calc(100vh)
+
+#screen
+  width: 100%
+  height: 100%
+  overflow: hidden
+  background: #121212
+  position: relative
+
+#top, #right, #bottom
+  position: absolute
+
+#top
+  top: 0
+  left: 0
+  right: 0
+  width: 100%
+  height: 30px
+  background: #303030
+
+#right
+  top: 30px
+  right: 0
+  bottom: 200px
+  width: 0
+  background: #202020
+  transition: width .3s .3s ease-in
+  .ani &
+    width: 450px
+
+#bottom
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 0
+  background: #252525
+  transition: height .3s ease-in
+  .ani &
+    height: 200px

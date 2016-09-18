@@ -1,0 +1,76 @@
+(function($) {
+
+  const entities = {
+    '1': {
+      title: 'Node 1',
+      name: 'Zero',
+      nid: 1,
+      state: '',
+      classes: {
+        active: false,
+        hover: false,
+      },
+    },
+    '2': {
+      title: 'Page 1 with all',
+      name: 'Terra',
+      nid: 2,
+      state: '',
+      classes: {
+        active: false,
+        hover: false,
+      },
+    },
+    '3': {
+      title: 'Test Node',
+      name: 'Zero',
+      nid: 3,
+      state: '',
+      classes: {
+        active: false,
+        hover: false,
+      },
+    },
+  };
+
+  $(function() {
+    const wrappers = $('.wrapper > .entity');
+
+    wrappers.each(function() {
+      const wrapper = $(this);
+      const button = $('.field-nid', wrapper);
+      const nid = wrapper.data('nid');
+      const count = wrapper.data('count');
+
+      button.click(function(e) {
+        e.preventDefault();
+
+        for (var n in entities) {
+          entities[n].state = '';
+          entities[n].classes.active = false;
+        }
+        entities[nid].state = ' (active)';
+        entities[nid].classes.active = true;
+      });
+
+      wrapper.mouseenter(function() {
+        for (var n in entities) {
+          entities[n].classes.hover = false;
+        }
+        entities[nid].classes.hover = true;
+      });
+
+      wrapper.mouseleave(function() {
+        for (var n in entities) {
+          entities[n].classes.hover = false;
+        }
+      });
+
+      new Vue({
+        el: '.entity.nid-' + nid + '.count-' + count,
+        data: entities[nid],
+      });
+    });
+  });
+
+})(jQuery);

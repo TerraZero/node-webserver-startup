@@ -33,6 +33,10 @@ const paths = {
     files: ['babel/**/*.babel', '!babel/**/_*.babel'],
     dest: 'web/src/js',
   },
+  lib: {
+    files: 'lib/**/*.*',
+    dest: 'web/src/lib',
+  },
 };
 
 gulp.task('sass', function() {
@@ -60,9 +64,14 @@ gulp.task('babel', function() {
     .pipe(gulp.dest(paths.babel.dest));
 });
 
-gulp.task('build', ['sass', 'pug', 'babel']);
+gulp.task('lib', function() {
+  return gulp.src(paths.lib.files)
+    .pipe(gulp.dest(paths.lib.dest));
+});
 
-gulp.task('watch', ['sass', 'pug', 'babel'], function() {
+gulp.task('build', ['sass', 'pug', 'babel', 'lib']);
+
+gulp.task('watch', ['sass', 'pug', 'babel', 'lib'], function() {
   gulp.watch(paths.sass.watch, ['sass']);
   gulp.watch(paths.pug.watch, ['pug']);
   gulp.watch(paths.babel.watch, ['babel']);

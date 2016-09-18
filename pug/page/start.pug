@@ -1,0 +1,17 @@
+extends /base/_page
+
+block append css
+  link(href='/src/css/page/start.css', rel='stylesheet')
+
+block append js
+  script(src='/src/js/start.js')
+
+block screen
+  #main
+    block main
+      #content
+  #side
+    block side
+      #top
+      #right
+      #bottom

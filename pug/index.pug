@@ -1,10 +1,14 @@
-doctype html
-html
-  head
-    title
-      | Start
-    link(href='/src/css/index.css', rel='stylesheet')
-    script(src='/src/js/all.js')
-  body
-    .hallo
-      | hallo
+extends /base/_page
+
+block append css
+  link(href='/src/css/screen.css', rel='stylesheet')
+  link(href='/src/css/index.css', rel='stylesheet')
+
+block page
+  .wrapper
+    .link
+      a(href="/page/start")
+        | Start
+    .link
+      a(href="/page/vue")
+        | Vue

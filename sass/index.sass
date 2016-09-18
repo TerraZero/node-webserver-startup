@@ -1,2 +1,24 @@
-.hallo
-  color: red
+a
+  color: cyan
+  display: inline-block
+  text-decoration: none
+  position: relative
+  padding: 3px 5px
+  border: 2px solid transparent
+  transition: border-color .3s ease-in-out
+  &:after
+    content: ''
+    width: 0
+    height: 2px
+    background: cyan
+    position: absolute
+    bottom: 2px
+    left: 4px
+    transition: width .15s ease-in-out
+  &:hover
+    border-color: cyan
+    &:after
+      width: calc(100% - 8px)
+
+.wrapper
+  margin: 20px
