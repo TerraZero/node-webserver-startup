@@ -6,6 +6,10 @@ const babel = require('gulp-babel');
 
 const concat = require('gulp-concat');
 
+const browserSync = require('browser-sync').create();
+
+
+
 const errorHandler = function(name) {
   return function(err) {
     console.error('########### ERROR ' + name.toUpperCase() + ' ############');
@@ -43,7 +47,8 @@ gulp.task('sass', function() {
   return gulp.src(paths.sass.files)
     .pipe(sass())
     .on('error', errorHandler('sass'))
-    .pipe(gulp.dest(paths.sass.dest));
+    .pipe(gulp.dest(paths.sass.dest))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('pug', function() {
@@ -72,9 +77,15 @@ gulp.task('lib', function() {
 gulp.task('build', ['sass', 'pug', 'babel', 'lib']);
 
 gulp.task('watch', ['sass', 'pug', 'babel', 'lib'], function() {
+  browserSync.init({
+      proxy: 'localhost:8080',
+
+  });
+
   gulp.watch(paths.sass.watch, ['sass']);
   gulp.watch(paths.pug.watch, ['pug']);
   gulp.watch(paths.babel.watch, ['babel']);
+  gulp.watch('web/**/*.html').on('change', browserSync.reload);
 });
 
 gulp.task('default', ['watch']);
