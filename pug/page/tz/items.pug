@@ -1,0 +1,15 @@
+extends index.pug
+
+block append css
+  link(href='/src/css/page/tz/page.css', rel='stylesheet')
+  link(href='/src/css/page/tz/items.css', rel='stylesheet')
+
+block index-page
+  .wrapper
+    - for (var i = 0; i < 9; i++)
+      .item
+        .title
+          | Item #{i + 1}
+        .body
+          .text
+            | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor  invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.

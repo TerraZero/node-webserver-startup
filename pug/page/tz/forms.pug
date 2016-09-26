@@ -1,0 +1,15 @@
+extends index.pug
+
+block append css
+  link(href='/src/css/page/tz/page.css', rel='stylesheet')
+  link(href='/src/css/page/tz/forms.css', rel='stylesheet')
+
+block index-page
+  form.form(method='get')
+    - for (var i = 0; i < 6; i++)
+      .field
+        input(type='textfield', id='field-' + i, required)
+        label(for='field-' + i)
+          | Field #{i + 1}
+    .field
+      input.submit(type='submit', value='Submit')

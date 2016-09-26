@@ -4,6 +4,7 @@
     '1': {
       title: 'Node 1',
       name: 'Zero',
+      first: 'Terra',
       nid: 1,
       state: '',
       classes: {
@@ -14,6 +15,7 @@
     '2': {
       title: 'Page 1 with all',
       name: 'Terra',
+      first: 'Zero',
       nid: 2,
       state: '',
       classes: {
@@ -24,6 +26,7 @@
     '3': {
       title: 'Test Node',
       name: 'Zero',
+      first: 'Terra',
       nid: 3,
       state: '',
       classes: {
@@ -51,6 +54,7 @@
         }
         entities[nid].state = ' (active)';
         entities[nid].classes.active = true;
+        entities[nid].name = 'TEST';
       });
 
       wrapper.mouseenter(function() {
@@ -69,6 +73,11 @@
       new Vue({
         el: '.entity.nid-' + nid + '.count-' + count,
         data: entities[nid],
+        computed: {
+          full: function() {
+            return this.name + ' ' + this.first;
+          }
+        }
       });
     });
   });

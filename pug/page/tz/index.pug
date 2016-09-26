@@ -1,0 +1,16 @@
+extends /base/_page
+
+block append css
+  link(href='/src/css/page/tz/page.css', rel='stylesheet')
+  link(href='/src/css/page/tz/index.css', rel='stylesheet')
+  - var sites = {items: "Items", forms: "Forms", menu: "Menu"}
+
+
+block screen
+  #page-wrapper
+    #page
+      block index-page
+        .links
+          each site, link in sites
+            a.link(href=link)
+              | #{site}

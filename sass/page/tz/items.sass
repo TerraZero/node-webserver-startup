@@ -1,0 +1,70 @@
+.wrapper
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+
+.item
+  width: 25%
+  box-sizing: border-box
+  height: 300px
+  display: inline-block
+  padding: 20px
+  border: 2px solid cyan
+  margin: 20px
+  position: relative
+  overflow: hidden
+  background: url(http://www.the-universe.net/wp-content/uploads/2014/09/1024px-Black_Hole_in_the_universe.jpg)
+  background-size: cover
+  &:after
+    position: absolute
+    bottom: 0
+    right: 0
+    content: ''
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 0 0 40px 40px
+    border-color: transparent transparent cyan transparent
+    transition: border-width .2s .6s ease-out
+  &:hover
+    &:after
+      border-width: 0 0 80px 80px
+      transition: border-width .2s ease-out
+    .title
+      width: 100%
+    .body
+      height: calc(100% - 38px)
+      transition: height .3s .6s ease-in-out
+  .title
+    position: absolute
+    top: 0
+    left: 0
+    width: 81px
+    height: 38px
+    text-align: center
+    line-height: 38px
+    background: orange
+    box-sizing: border-box
+    transition: width .3s .3s ease-in-out
+    &:after
+      content: ''
+      position: absolute
+      left: 100%
+      top: 0
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 38px 60px 0 0
+      border-color: orange transparent transparent transparent
+  .body
+    position: absolute
+    top: 38px
+    left: 0
+    right: 0
+    box-sizing: border-box
+    background: rgba(255, 128, 0, .7)
+    height: 0
+    overflow: hidden
+    transition: height .3s ease-in-out
+    .text
+      padding: 20px
