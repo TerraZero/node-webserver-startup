@@ -1,0 +1,71 @@
+$main: white
+$action: white
+$width: 40px
+$height: 40px
+$border: 1px solid $main
+$speed: 1s
+$isZAction: true
+$isElipAction: true
+
+body
+  background: black
+
+@-webkit-keyframes rotateElips
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+@-webkit-keyframes rotateZ
+  0%
+    transform: rotateY(0deg)
+  100%
+    transform: rotateY(360deg)
+
+@-webkit-keyframes fillElips
+  0%
+    fill: $main
+    stroke: $main
+  50%
+    fill: $action
+    stroke: $action
+  100%
+    fill: $main
+    stroke: $main
+
+@-webkit-keyframes strokeZ
+  0%
+    stroke: $main
+  50%
+    stroke: $action
+  100%
+    stroke: $main
+
+
+svg
+  width: $width
+  height: $height
+  margin: 100px
+  border: $border
+  circle
+    fill: none
+    stroke: $main
+    stroke-width: 2px
+  line
+    stroke: $main
+    stroke-width: 4px
+  path
+    stroke: $main
+    stroke-width: 4px
+  @if $isElipAction
+    .elips
+      transform-origin: 50%
+      animation: rotateElips $speed ease-in-out infinite
+      path
+        animation: fillElips $speed ease-in-out infinite
+  @if $isZAction
+    .z
+      transform-origin: 50%
+      animation: rotateZ $speed ease-in-out infinite, strokeZ $speed ease-in-out infinite
+  .elip
+    fill: $main
