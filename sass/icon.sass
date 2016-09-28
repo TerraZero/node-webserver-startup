@@ -1,0 +1,59 @@
+$color: white
+$negate: black
+$width: 400px
+$height: $width
+$stroke: 2px
+$speed: 2s
+
+body
+  background: black
+
+@-webkit-keyframes rotateX
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+@-webkit-keyframes rotateY
+  0%
+    transform: rotateY(0deg)
+  100%
+    transform: rotateY(360deg)
+
+svg
+  width: $width
+  height: $height
+  margin: 10px
+  .st-m
+    stroke-width: $stroke
+    stroke: $color
+  .fi-m
+    fill: $color
+  .z, .t
+    stroke-width: 4px
+    fill: none
+  .fi-n
+    fill: $negate
+
+.col-ani-all
+  .ro-x
+    transform-origin: 50%
+    animation: rotateX $speed ease-in-out infinite
+.col-ani, .col-ani-all
+  .ro-y
+    transform-origin: 50%
+    animation: rotateY $speed ease-in-out infinite
+
+.col.col-neg
+  background: $color
+  border: 1px solid $negate
+  .st-m
+    stroke: $negate
+  .fi-m
+    fill: $negate
+  .fi-n
+    fill: $color
+
+.col
+  display: inline-block
+  border: 1px solid $color
