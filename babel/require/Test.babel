@@ -1,0 +1,9 @@
+class Test {
+
+  static test() {
+    console.log('cool');
+  }
+
+}
+
+export default Test;
