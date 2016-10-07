@@ -14,3 +14,12 @@ block screen
   #particle
   #logo
     include /logo/logo
+  #items
+    - var i = 0;
+    while (i < 3)
+      .logo-item(class="lo-" + i)
+        .top
+          include /logo/logo-ani
+        .bottom
+          | #{i + 1} halo
+      - i++

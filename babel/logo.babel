@@ -1,7 +1,7 @@
 (function($) {
 
   $(function() {
-    particlesJS.load('particle', '/particle.json', function() {
+    particlesJS.load('particle', '/src/lib/particles/logo.json', function() {
       console.log('callback - particles.js config loaded');
     });
   });

@@ -11,3 +11,71 @@
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
+  animation: logo 5s ease-in-out
+  animation-delay: 2s
+  opacity: 0
+
+#items
+  width: 1000px
+  padding: 20px
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  justify-content: space-around
+  .logo-item
+    cursor: pointer
+    width: 200px
+    height: 300px
+    background: #202020
+    border: 5px solid #0170ba
+    padding: 50px
+    box-sizing: border-box
+    animation: items 0.5s ease-in-out forwards
+    opacity: 0
+    &:hover
+      box-shadow: 0 2px 20px 0px cyan
+    .top
+      text-align: center
+      svg
+        width: 50px
+        height: 50px
+    .bottom
+      text-align: center
+      color: white
+      font-size: 50px
+  .lo-0
+    animation-delay: 8s
+  .lo-1
+    animation-delay: 8.15s
+  .lo-2
+    animation-delay: 8.3s
+
+@keyframes items
+  0%
+    transform: translate(-80%, 15%)
+    opacity: 0
+    filter: blur(20px)
+  100%
+    transform: translate(0, 0)
+    opacity: 1
+    filter: blur(0px)
+
+@keyframes logo
+  0%
+    transform: translate(-100%, -30%)
+    opacity: 0
+    filter: blur(50px)
+  10%
+    transform: translate(-50%, -50%)
+    opacity: 1
+    filter: blur(0px)
+  90%
+    transform: translate(-50%, -50%)
+    filter: blur(0px)
+    opacity: 1
+  100%
+    transform: translate(0%, -70%)
+    filter: blur(50px)
+    opacity: 0
