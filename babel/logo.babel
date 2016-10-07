@@ -1,0 +1,9 @@
+(function($) {
+
+  $(function() {
+    particlesJS.load('particle', '/particle.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
+  });
+
+})(jQuery);
